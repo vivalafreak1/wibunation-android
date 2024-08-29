@@ -9,4 +9,6 @@ object Dimension {
 
     val IndicatorSize = 14.dp
 
+    val PageIndicatorWidth = 52.dp
+
 }
