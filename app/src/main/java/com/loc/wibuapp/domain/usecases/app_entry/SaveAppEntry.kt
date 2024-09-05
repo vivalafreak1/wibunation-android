@@ -1,4 +1,4 @@
-package com.loc.wibuapp.domain.usecases
+package com.loc.wibuapp.domain.usecases.app_entry
 
 import com.loc.wibuapp.domain.manager.LocalUserManager
 

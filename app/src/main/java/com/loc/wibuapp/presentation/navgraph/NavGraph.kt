@@ -7,6 +7,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
+import androidx.paging.compose.collectAsLazyPagingItems
+import com.loc.wibuapp.presentation.home.HomeScreen
+import com.loc.wibuapp.presentation.home.HomeViewModel
 import com.loc.wibuapp.presentation.onboarding.OnBoardingScreen
 import com.loc.wibuapp.presentation.onboarding.OnBoardingViewModel
 
@@ -36,7 +39,9 @@ fun NavGraph(
             startDestination = Route.WibuNavigatorScreen.route,
         ) {
             composable(route = Route.WibuNavigatorScreen.route) {
-                Text(text = "Wibu Navigator Screen")
+                val viewModel: HomeViewModel = hiltViewModel()
+                val anime = viewModel.anime.collectAsLazyPagingItems()
+                HomeScreen(anime = anime, navigate = {})
             }
         }
     }
