@@ -8,6 +8,7 @@ import com.loc.wibuapp.domain.manager.LocalUserManager
 import com.loc.wibuapp.domain.repository.AnimeRepository
 import com.loc.wibuapp.domain.usecases.anime.AnimeUseCase
 import com.loc.wibuapp.domain.usecases.anime.GetSeasonNow
+import com.loc.wibuapp.domain.usecases.anime.SearchAnime
 import com.loc.wibuapp.domain.usecases.app_entry.AppEntryUseCases
 import com.loc.wibuapp.domain.usecases.app_entry.ReadAppEntry
 import com.loc.wibuapp.domain.usecases.app_entry.SaveAppEntry
@@ -61,7 +62,8 @@ object AppModule {
         animeRepository: AnimeRepository
     ): AnimeUseCase {
         return AnimeUseCase(
-            getSeasonNow = GetSeasonNow(animeRepository)
+            getSeasonNow = GetSeasonNow(animeRepository),
+            getAnimeSearch = SearchAnime(animeRepository)
         )
     }
 

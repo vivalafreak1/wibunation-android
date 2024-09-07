@@ -12,13 +12,15 @@ import com.loc.wibuapp.presentation.home.HomeScreen
 import com.loc.wibuapp.presentation.home.HomeViewModel
 import com.loc.wibuapp.presentation.onboarding.OnBoardingScreen
 import com.loc.wibuapp.presentation.onboarding.OnBoardingViewModel
+import com.loc.wibuapp.presentation.search.SearchScreen
+import com.loc.wibuapp.presentation.search.SearchViewModel
 
 @Composable
 fun NavGraph(
     startDestination: String
-){
+) {
     val navController = rememberNavController()
-    
+
     NavHost(navController = navController, startDestination = startDestination) {
         navigation(
             route = Route.AppStartNavigation.route,
@@ -39,9 +41,11 @@ fun NavGraph(
             startDestination = Route.WibuNavigatorScreen.route,
         ) {
             composable(route = Route.WibuNavigatorScreen.route) {
-                val viewModel: HomeViewModel = hiltViewModel()
-                val anime = viewModel.anime.collectAsLazyPagingItems()
-                HomeScreen(anime = anime, navigate = {})
+                val viewModel: SearchViewModel = hiltViewModel()
+                SearchScreen(
+                    state = viewModel.state.value,
+                    event = viewModel::onEvent,
+                    navigate = {})
             }
         }
     }

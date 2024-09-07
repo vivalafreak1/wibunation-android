@@ -8,5 +8,7 @@ interface AnimeRepository {
 
     fun getSeasonNow(data: List<String>): Flow<PagingData<Data>>
 
+    fun getAnimeSearch(searchQuery: String,data: List<String>): Flow<PagingData<Data>>
+
 
 }
