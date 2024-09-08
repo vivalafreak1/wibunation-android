@@ -91,7 +91,7 @@ fun HomeScreen(anime: LazyPagingItems<Data>, navigate: (String) -> Unit) {
             modifier = Modifier.padding(horizontal = MediumPadding1),
             anime = anime,
             onClick = {
-                navigate(Route.DetailsScreen.route)
+                navigate(Route.DetailScreen.route)
             }
         )
     }

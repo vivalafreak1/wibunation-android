@@ -41,7 +41,7 @@ fun SearchScreen(
         Spacer(modifier = Modifier.height(MediumPadding1))
         state.data?.let {
             val data = it.collectAsLazyPagingItems()
-            AnimeList(anime = data, onClick = {navigate(Route.DetailsScreen.route)})
+            AnimeList(anime = data, onClick = {navigate(Route.DetailScreen.route)})
         }
     }
 }
