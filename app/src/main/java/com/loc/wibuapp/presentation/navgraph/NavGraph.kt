@@ -8,6 +8,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navigation
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.loc.wibuapp.presentation.bookmark.BookmarkScreen
+import com.loc.wibuapp.presentation.bookmark.BookmarkViewModel
 import com.loc.wibuapp.presentation.home.HomeScreen
 import com.loc.wibuapp.presentation.home.HomeViewModel
 import com.loc.wibuapp.presentation.onboarding.OnBoardingScreen
@@ -41,11 +43,8 @@ fun NavGraph(
             startDestination = Route.WibuNavigatorScreen.route,
         ) {
             composable(route = Route.WibuNavigatorScreen.route) {
-                val viewModel: SearchViewModel = hiltViewModel()
-                SearchScreen(
-                    state = viewModel.state.value,
-                    event = viewModel::onEvent,
-                    navigate = {})
+                val viewModel: BookmarkViewModel = hiltViewModel()
+                BookmarkScreen(state = viewModel.state.value, navigate = {})
             }
         }
     }

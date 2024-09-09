@@ -18,13 +18,31 @@ import com.loc.wibuapp.presentation.Dimension.MediumPadding1
 @Composable
 fun AnimeList(
     modifier: Modifier = Modifier,
+    anime: List<Data>,
+    onClick: (Data) -> Unit
+) {
+    LazyColumn(
+        modifier = modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.spacedBy(MediumPadding1),
+        contentPadding = PaddingValues(all = ExtraSmallPadding2)
+    ) {
+        items(count = anime.size) {
+            val data = anime[it]
+            AnimeCard(data = data, onClick = { onClick(data) })
+        }
+    }
+}
+
+@Composable
+fun AnimeList(
+    modifier: Modifier = Modifier,
     anime: LazyPagingItems<Data>,
     onClick: (Data) -> Unit
 ) {
     val handlePagingResult = handlePagingResult(anime = anime)
     if (handlePagingResult) {
         LazyColumn(
-            modifier = Modifier.fillMaxSize(),
+            modifier = modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(MediumPadding1),
             contentPadding = PaddingValues(all = ExtraSmallPadding2)
         ) {
@@ -54,10 +72,12 @@ fun handlePagingResult(
             ShimmerEffect()
             false
         }
+
         error != null -> {
             EmptyScreen()
             false
         }
+
         else -> {
             true
         }
@@ -67,7 +87,7 @@ fun handlePagingResult(
 @Composable
 private fun ShimmerEffect() {
     Column(verticalArrangement = Arrangement.spacedBy(MediumPadding1)) {
-        repeat(10){
+        repeat(10) {
             AnimeCardShimmerEffect(
                 modifier = Modifier.padding(horizontal = MediumPadding1)
             )

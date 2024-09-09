@@ -11,8 +11,11 @@ import com.loc.wibuapp.data.repository.AnimeRepositoryImpl
 import com.loc.wibuapp.domain.manager.LocalUserManager
 import com.loc.wibuapp.domain.repository.AnimeRepository
 import com.loc.wibuapp.domain.usecases.anime.AnimeUseCase
+import com.loc.wibuapp.domain.usecases.anime.DeleteAnime
 import com.loc.wibuapp.domain.usecases.anime.GetSeasonNow
 import com.loc.wibuapp.domain.usecases.anime.SearchAnime
+import com.loc.wibuapp.domain.usecases.anime.SelectAnime
+import com.loc.wibuapp.domain.usecases.anime.UpsertAnime
 import com.loc.wibuapp.domain.usecases.app_entry.AppEntryUseCases
 import com.loc.wibuapp.domain.usecases.app_entry.ReadAppEntry
 import com.loc.wibuapp.domain.usecases.app_entry.SaveAppEntry
@@ -65,11 +68,15 @@ object AppModule {
     @Provides
     @Singleton
     fun provideAnimeUseCases(
-        animeRepository: AnimeRepository
+        animeRepository: AnimeRepository,
+        animeDao: AnimeDao
     ): AnimeUseCase {
         return AnimeUseCase(
             getSeasonNow = GetSeasonNow(animeRepository),
-            getAnimeSearch = SearchAnime(animeRepository)
+            getAnimeSearch = SearchAnime(animeRepository),
+            upsertAnime = UpsertAnime(animeDao),
+            deleteAnime = DeleteAnime(animeDao),
+            selectAnime = SelectAnime(animeDao)
         )
     }
 
