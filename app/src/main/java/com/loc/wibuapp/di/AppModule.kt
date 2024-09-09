@@ -1,6 +1,10 @@
 package com.loc.wibuapp.di
 
 import android.app.Application
+import androidx.room.Room
+import com.loc.wibuapp.data.local.AnimeDao
+import com.loc.wibuapp.data.local.AnimeDatabase
+import com.loc.wibuapp.data.local.AnimeTypeConverter
 import com.loc.wibuapp.data.manager.LocalUserManagerImpl
 import com.loc.wibuapp.data.remote.AnimeApi
 import com.loc.wibuapp.data.repository.AnimeRepositoryImpl
@@ -20,6 +24,8 @@ import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
+
+import com.loc.wibuapp.util.Constants.ANIME_DATABASE_NAME
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -67,4 +73,23 @@ object AppModule {
         )
     }
 
+    @Provides
+    @Singleton
+    fun provideAnimeDatabase(
+        application: Application
+    ): AnimeDatabase {
+        return Room.databaseBuilder(
+            context = application,
+            klass = AnimeDatabase::class.java,
+            name = ANIME_DATABASE_NAME
+        ).addTypeConverter(AnimeTypeConverter())
+            .fallbackToDestructiveMigration()
+            .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideAnimeDao(
+        animeDatabase: AnimeDatabase
+    ): AnimeDao = animeDatabase.animeDao
 }

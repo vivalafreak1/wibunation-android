@@ -1,5 +1,8 @@
 package com.loc.wibuapp.domain.model
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
 /*data class Data(
     val aired: com.loc.wibuapp.domain.model.Aired,
     val airing: Boolean,
@@ -39,9 +42,9 @@ package com.loc.wibuapp.domain.model
     val year: Int
 )*/
 
-
+@Entity
 data class Data(
-    val mal_id: Int,
+    @PrimaryKey val mal_id: Int,
     val title: String,
     val images: Images,
     val score: Double,

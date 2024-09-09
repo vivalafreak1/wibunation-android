@@ -1,0 +1,22 @@
+package com.loc.wibuapp.data.local
+
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import com.loc.wibuapp.domain.model.Data
+import kotlinx.coroutines.flow.Flow
+
+@Dao
+interface AnimeDao {
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsert(data: Data)
+
+    @Delete
+    suspend fun delete(data: Data)
+
+    @Query("SELECT * FROM Data")
+    fun getSeasonNow(): Flow<List<Data>>
+}

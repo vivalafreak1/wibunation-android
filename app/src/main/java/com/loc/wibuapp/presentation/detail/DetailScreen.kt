@@ -1,7 +1,10 @@
 package com.loc.wibuapp.presentation.detail
 
 import android.content.Intent
+import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import android.net.Uri
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -111,38 +114,41 @@ fun DetailScreen(
 }
 
 @Preview(showBackground = true)
+@Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
 @Composable
 fun DetailScreenPreview() {
     WibuAppTheme {
-        DetailScreen(
-            data = Data(
-                mal_id = 1,
-                title = "Frieren-Sama and the stark brotherhood",
-                images = Images(
-                    jpg = Jpg(
-                        image_url = null,
-                        large_image_url = null,
-                        small_image_url = null,
+        Box(modifier = Modifier.background(MaterialTheme.colorScheme.background)) {
+            DetailScreen(
+                data = Data(
+                    mal_id = 1,
+                    title = "Frieren-Sama and the stark brotherhood",
+                    images = Images(
+                        jpg = Jpg(
+                            image_url = null,
+                            large_image_url = null,
+                            small_image_url = null,
+                        ),
+                        webp = Webp(
+                            image_url = "https://otakumobileague.b-cdn.net/wp-content/uploads/2024/01/Frieren-3206649243-800x445.webp",
+                            small_image_url = null,
+                            large_image_url = null,
+                        ),
                     ),
-                    webp = Webp(
-                        image_url = "https://otakumobileague.b-cdn.net/wp-content/uploads/2024/01/Frieren-3206649243-800x445.webp",
-                        small_image_url = null,
-                        large_image_url = null,
-                    ),
+                    score = 8.9,
+                    synopsis = "During their decade-long quest to defeat the Demon King, the members of the hero's party—Himmel himself, the priest Heiter, the dwarf warrior Eisen, and the elven mage Frieren—forge bonds through adventures and battles, creating unforgettable precious memories for most of them.\n" +
+                            "\n" +
+                            "However, the time that Frieren spends with her comrades is equivalent to merely a fraction of her life, which has lasted over a thousand years. When the party disbands after their victory, Frieren casually returns to her \"usual\" routine of collecting spells across the continent. Due to her different sense of time, she seemingly holds no strong feelings toward the experiences she went through.\n" +
+                            "\n" +
+                            "As the years pass, Frieren gradually realizes how her days in the hero's party truly impacted her. Witnessing the deaths of two of her former companions, Frieren begins to regret having taken their presence for granted; she vows to better understand humans and create real personal connections. Although the story of that once memorable journey has long ended, a new tale is about to begin.",
+                    episodes = 3,
+                    airing = true,
+                    type = "TV",
+                    url = "https://myanimelist.net/anime/52991/Sousou_no_Frieren"
                 ),
-                score = 8.9,
-                synopsis = "During their decade-long quest to defeat the Demon King, the members of the hero's party—Himmel himself, the priest Heiter, the dwarf warrior Eisen, and the elven mage Frieren—forge bonds through adventures and battles, creating unforgettable precious memories for most of them.\n" +
-                        "\n" +
-                        "However, the time that Frieren spends with her comrades is equivalent to merely a fraction of her life, which has lasted over a thousand years. When the party disbands after their victory, Frieren casually returns to her \"usual\" routine of collecting spells across the continent. Due to her different sense of time, she seemingly holds no strong feelings toward the experiences she went through.\n" +
-                        "\n" +
-                        "As the years pass, Frieren gradually realizes how her days in the hero's party truly impacted her. Witnessing the deaths of two of her former companions, Frieren begins to regret having taken their presence for granted; she vows to better understand humans and create real personal connections. Although the story of that once memorable journey has long ended, a new tale is about to begin.",
-                episodes = 3,
-                airing = true,
-                type = "TV",
-                url = "https://myanimelist.net/anime/52991/Sousou_no_Frieren"
-            ),
-            event = {},
-            navigateUp = {},
-        )
+                event = {},
+                navigateUp = {},
+            )
+        }
     }
 }
