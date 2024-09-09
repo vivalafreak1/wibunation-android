@@ -5,5 +5,6 @@ data class AnimeUseCase(
     val getAnimeSearch: SearchAnime,
     val upsertAnime: UpsertAnime,
     val deleteAnime: DeleteAnime,
+    val selectAnimes: SelectAnimes,
     val selectAnime: SelectAnime
 )

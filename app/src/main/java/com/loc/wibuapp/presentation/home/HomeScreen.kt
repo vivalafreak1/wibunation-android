@@ -28,12 +28,15 @@ import com.loc.wibuapp.presentation.Dimension.MediumPadding1
 import com.loc.wibuapp.R
 import com.loc.wibuapp.presentation.common.AnimeList
 import com.loc.wibuapp.presentation.common.SearchBar
-import com.loc.wibuapp.presentation.navgraph.Route
 
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun HomeScreen(anime: LazyPagingItems<Data>, navigate: (String) -> Unit) {
+fun HomeScreen(
+    anime: LazyPagingItems<Data>,
+    navigateToSearch: () -> Unit,
+    navigateToDetail: (Data) -> Unit
+) {
     val titles by remember {
         derivedStateOf {
             if (anime.itemCount > 10) {
@@ -69,7 +72,7 @@ fun HomeScreen(anime: LazyPagingItems<Data>, navigate: (String) -> Unit) {
             readOnly = true,
             onValueChange = {},
             onClick = {
-                navigate(Route.SearchScreen.route)
+                navigateToSearch()
             },
             onSearch = {}
         )
@@ -91,7 +94,7 @@ fun HomeScreen(anime: LazyPagingItems<Data>, navigate: (String) -> Unit) {
             modifier = Modifier.padding(horizontal = MediumPadding1),
             anime = anime,
             onClick = {
-                navigate(Route.DetailScreen.route)
+                navigateToDetail(it)
             }
         )
     }

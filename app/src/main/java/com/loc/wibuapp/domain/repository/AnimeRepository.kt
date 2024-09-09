@@ -10,5 +10,11 @@ interface AnimeRepository {
 
     fun getAnimeSearch(searchQuery: String,data: List<String>): Flow<PagingData<Data>>
 
+    suspend fun upsertAnime(data: Data)
 
+    suspend fun deleteAnime(data: Data)
+
+    fun selectAnimes(): Flow<List<Data>>
+
+    suspend fun selectAnime(mal_id: Int): Data?
 }

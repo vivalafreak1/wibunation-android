@@ -2,12 +2,13 @@ package com.loc.wibuapp.domain.usecases.anime
 
 import com.loc.wibuapp.domain.model.Data
 import com.loc.wibuapp.domain.repository.AnimeRepository
+import kotlinx.coroutines.flow.Flow
 
-class UpsertAnime(
+class SelectAnimes(
     private val animeRepository: AnimeRepository
 ) {
 
-    suspend operator fun invoke(data: Data) {
-        animeRepository.upsertAnime(data)
+    operator fun invoke(): Flow<List<Data>> {
+        return animeRepository.selectAnimes()
     }
 }

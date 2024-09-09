@@ -3,15 +3,18 @@ package com.loc.wibuapp.data.repository
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
+import com.loc.wibuapp.data.local.AnimeDao
 import com.loc.wibuapp.data.remote.AnimeApi
 import com.loc.wibuapp.data.remote.AnimePagingSource
 import com.loc.wibuapp.data.remote.SearchAnimePagingSource
 import com.loc.wibuapp.domain.model.Data
 import com.loc.wibuapp.domain.repository.AnimeRepository
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.onEach
 
 class AnimeRepositoryImpl(
-    private val animeApi: AnimeApi
+    private val animeApi: AnimeApi,
+    private val animeDao: AnimeDao
 ) : AnimeRepository {
 
     override fun getSeasonNow(data: List<String>): Flow<PagingData<Data>> {
@@ -37,5 +40,21 @@ class AnimeRepositoryImpl(
                 )
             }
         ).flow
+    }
+
+    override suspend fun upsertAnime(data: Data) {
+        animeDao.upsert(data)
+    }
+
+    override suspend fun deleteAnime(data: Data) {
+        animeDao.delete(data)
+    }
+
+    override fun selectAnimes(): Flow<List<Data>> {
+        return animeDao.getSeasonNow()
+    }
+
+    override suspend fun selectAnime(mal_id: Int): Data? {
+        return animeDao.getAnimeById(mal_id)
     }
 }

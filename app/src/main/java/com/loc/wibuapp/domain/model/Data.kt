@@ -1,7 +1,9 @@
 package com.loc.wibuapp.domain.model
 
+import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.parcelize.Parcelize
 
 /*data class Data(
     val aired: com.loc.wibuapp.domain.model.Aired,
@@ -42,6 +44,7 @@ import androidx.room.PrimaryKey
     val year: Int
 )*/
 
+@Parcelize
 @Entity
 data class Data(
     @PrimaryKey val mal_id: Int,
@@ -55,4 +58,4 @@ data class Data(
     val url: String,
     val genres: List<Genre> = emptyList(),
     val studios: List<Studios> = emptyList()
-)
+): Parcelable

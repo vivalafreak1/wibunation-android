@@ -23,8 +23,8 @@ class BookmarkViewModel @Inject constructor(
     }
 
     private fun  getSeasonNow(){
-        animeUseCase.selectAnime().onEach {
-            _state.value = _state.value.copy(data = it)
+        animeUseCase.selectAnimes().onEach {
+            _state.value = _state.value.copy(data = it.asReversed())
         }.launchIn(viewModelScope)
     }
 

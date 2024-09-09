@@ -19,4 +19,8 @@ interface AnimeDao {
 
     @Query("SELECT * FROM Data")
     fun getSeasonNow(): Flow<List<Data>>
+
+    @Query("SELECT * FROM Data WHERE mal_id=:mal_id")
+    suspend fun getAnimeById(mal_id: Int): Data?
+
 }

@@ -1,13 +1,13 @@
 package com.loc.wibuapp.domain.usecases.anime
 
-import com.loc.wibuapp.data.local.AnimeDao
 import com.loc.wibuapp.domain.model.Data
+import com.loc.wibuapp.domain.repository.AnimeRepository
 
 class DeleteAnime(
-    private val animeDao: AnimeDao
+    private val animeRepository: AnimeRepository
 ) {
 
     suspend operator fun invoke(data: Data) {
-        animeDao.delete(data)
+        animeRepository.deleteAnime(data)
     }
 }

@@ -15,13 +15,14 @@ import androidx.compose.ui.text.font.FontWeight
 import com.loc.wibuapp.presentation.Dimension.MediumPadding1
 
 import com.loc.wibuapp.R
+import com.loc.wibuapp.domain.model.Data
 import com.loc.wibuapp.presentation.common.AnimeList
 import com.loc.wibuapp.presentation.navgraph.Route
 
 @Composable
 fun BookmarkScreen(
     state: BookmarkState,
-    navigate: (String) -> Unit
+    navigateToDetail: (Data) -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -37,6 +38,6 @@ fun BookmarkScreen(
 
         Spacer(modifier = Modifier.height(MediumPadding1))
 
-        AnimeList(anime = state.data, onClick = { navigate(Route.DetailScreen.route) })
+        AnimeList(anime = state.data, onClick = { navigateToDetail(it) })
     }
 }

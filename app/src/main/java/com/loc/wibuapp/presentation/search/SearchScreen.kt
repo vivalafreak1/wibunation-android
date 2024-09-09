@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.paging.compose.collectAsLazyPagingItems
+import com.loc.wibuapp.domain.model.Data
 import com.loc.wibuapp.presentation.Dimension.MediumPadding1
 import com.loc.wibuapp.presentation.common.AnimeList
 import com.loc.wibuapp.presentation.common.SearchBar
@@ -18,7 +19,7 @@ import com.loc.wibuapp.presentation.navgraph.Route
 fun SearchScreen(
     state: SearchState,
     event: (SearchEvent) -> Unit,
-    navigate: (String) -> Unit
+    navigateToDetail: (Data) -> Unit
 ) {
 
     Column(
@@ -41,7 +42,7 @@ fun SearchScreen(
         Spacer(modifier = Modifier.height(MediumPadding1))
         state.data?.let {
             val data = it.collectAsLazyPagingItems()
-            AnimeList(anime = data, onClick = {navigate(Route.DetailScreen.route)})
+            AnimeList(anime = data, onClick = {navigateToDetail(it)})
         }
     }
 }

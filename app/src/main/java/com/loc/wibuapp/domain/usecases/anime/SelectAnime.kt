@@ -1,14 +1,13 @@
 package com.loc.wibuapp.domain.usecases.anime
 
-import com.loc.wibuapp.data.local.AnimeDao
 import com.loc.wibuapp.domain.model.Data
-import kotlinx.coroutines.flow.Flow
+import com.loc.wibuapp.domain.repository.AnimeRepository
 
 class SelectAnime(
-    private val animeDao: AnimeDao
+    private val animeRepository: AnimeRepository
 ) {
 
-    operator fun invoke(): Flow<List<Data>> {
-        return animeDao.getSeasonNow()
+    suspend operator fun invoke(mal_id: Int): Data? {
+        return animeRepository.selectAnime(mal_id)
     }
 }

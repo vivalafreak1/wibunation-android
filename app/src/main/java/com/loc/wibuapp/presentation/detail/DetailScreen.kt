@@ -66,7 +66,7 @@ fun DetailScreen(
                     }
                 }
             },
-            onBookmarkClick = { event(DetailEvent.SaveArticle) },
+            onBookmarkClick = { event(DetailEvent.UpsertDeleteAnime(data)) },
             onBackClick = navigateUp
         )
 
