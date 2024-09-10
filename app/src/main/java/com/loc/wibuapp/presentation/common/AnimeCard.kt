@@ -57,6 +57,9 @@ fun AnimeCard(
             contentScale = ContentScale.Crop
         )
 
+        // Add Spacer for extra space between the image and the text
+        Spacer(modifier = Modifier.width(ExtraSmallPadding2))
+
         Column(
             verticalArrangement = Arrangement.SpaceAround,
             modifier = Modifier
@@ -76,7 +79,9 @@ fun AnimeCard(
                 Text(
                     text = genreText,
                     style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
-                    color = colorResource(id = R.color.body)
+                    color = colorResource(id = R.color.body),
+                    maxLines = 2,
+                    modifier = Modifier.weight(1f)
                 )
 
                 Spacer(modifier = Modifier.width(ExtraSmallPadding2))
@@ -93,7 +98,9 @@ fun AnimeCard(
                 Text(
                     text = studioText,
                     style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
-                    color = colorResource(id = R.color.body)
+                    color = colorResource(id = R.color.body),
+                    maxLines = 2,
+                    modifier = Modifier.weight(1f)
                 )
             }
         }
