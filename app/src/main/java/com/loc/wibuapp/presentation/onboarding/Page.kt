@@ -11,18 +11,18 @@ data class Page(
 
 val pages = listOf(
     Page(
-        title = "Lorem Ipsum is Simply Dummy",
-        description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        title = "Welcome to WibuApp",
+        description = "An experiment Android Application that display the list of Anime from MyAnimeList",
         image = R.drawable.onboarding1
     ),
     Page(
-        title = "Lorem Ipsum is Simply Dummy",
-        description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        title = "Powered by Jikan API",
+        description = "Special thanks to Jikan API for providing data fetched from MyAnimeList",
         image = R.drawable.onboarding2
     ),
     Page(
-        title = "Lorem Ipsum is Simply Dummy",
-        description = "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        title = "Let's Explore!",
+        description = "Let's explore the world of Anime together!",
         image = R.drawable.onboarding3
     )
 )
